@@ -5,7 +5,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     entities/category.cpp \
     controllers/category_controller.cpp \
-    model/model.cpp
+    model/model.cpp \
+    controllers/tabmanager.cpp
 
 RESOURCES += qml.qrc \
         resources.qrc \
@@ -35,7 +36,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     entities/category.h \
     controllers/category_controller.h \
-    model/model.h
+    model/model.h \
+    controllers/tabmanager.h
 
 DISTFILES += \
     views/main.qml \

@@ -2,9 +2,10 @@ import QtQuick 2.0
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 1.4
 
-import mediadexer.category 1.0
+import mediadexer.Category 1.0
+
 Item {
-        signal categoryClicked(int categorie_id);
+        signal categoryClicked(Category category);
         GridView {
                 id: grid
                 width: parent.width;
@@ -21,11 +22,12 @@ Item {
                                 Text {
                                         width: grid.cellWidth
                                         height: grid.cellHeight
-                                        text: modelData.category_name
+                                        text: modelData.categoryName
                                         color: "#000"
                                         font.bold: true
                                         horizontalAlignment: Text.AlignHCenter
                                         verticalAlignment: Text.AlignVCenter
+                                        wrapMode: Text.Wrap;
                                 }
 
                                 MouseArea {
@@ -35,7 +37,7 @@ Item {
                                                     grid.currentIndex = -1;
                                                 else
                                                     grid.currentIndex = index;
-                                                categoryClicked(modelData.category_id);
+                                                categoryClicked(modelData);
                                         }
                                 }
                         }

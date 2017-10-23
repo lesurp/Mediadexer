@@ -14,6 +14,11 @@ QString const QUERY_CATEGORIES =
     "SELECT " + CATEGORY_ID + "," + CATEGORY_NAME + " FROM " + CATEGORY_TABLE;
 QString const ADD_CATEGORY = "INSERT INTO " + CATEGORY_TABLE + "(" +
                              CATEGORY_NAME + ") VALUES(:category_name)";
+QString const UPDATE_CATEGORY = "UPDATE " + CATEGORY_TABLE + " SET (" +
+                                CATEGORY_NAME + ") = (:category_name) WHERE " +
+                                CATEGORY_ID + " == :category_id";
+QString const DELETE_CATEGORY = "DELETE FROM " + CATEGORY_TABLE + " WHERE " +
+                                CATEGORY_ID + " == :category_id";
 
 Model::Model() {
   m_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -56,9 +61,24 @@ QList<QObject *> Model::categories() {
   return categories;
 }
 
-void Model::addCategory(const QString &category_name) {
+void Model::addCategory(const QString &categoryName) {
   QSqlQuery q;
   q.prepare(ADD_CATEGORY);
-  q.bindValue(":category_name", category_name);
-  qDebug() << q.exec();
+  q.bindValue(":category_name", categoryName);
+  q.exec();
+}
+
+void Model::updateCategory(qint32 categoryId, const QString &categoryName) {
+  QSqlQuery q;
+  q.prepare(UPDATE_CATEGORY);
+  q.bindValue(":category_name", categoryName);
+  q.bindValue(":category_id", categoryId);
+  q.exec();
+}
+
+void Model::deleteCategory(qint32 categoryId) {
+  QSqlQuery q;
+  q.prepare(DELETE_CATEGORY);
+  q.bindValue(":category_id", categoryId);
+  q.exec();
 }

@@ -8,7 +8,7 @@ Item {
         height: parent.height / 3
 
         onCategoryClicked: {
-            console.log(categorie_id)
+            console.log(category)
         }
     }
 

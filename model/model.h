@@ -10,6 +10,8 @@ public:
   Model();
   QList<QObject *> categories();
   void addCategory(QString const &);
+  void updateCategory(qint32, QString const &);
+  void deleteCategory(qint32);
 
 private:
   static void createDatabase();

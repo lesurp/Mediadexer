@@ -7,11 +7,13 @@
 
 class Category : public QObject {
   Q_OBJECT
-  Q_PROPERTY(qint32 category_id MEMBER m_id CONSTANT)
-  Q_PROPERTY(QString category_name MEMBER m_name CONSTANT)
+  Q_PROPERTY(qint32 categoryId MEMBER m_id CONSTANT)
+  Q_PROPERTY(QString categoryName MEMBER m_name CONSTANT)
 public:
   explicit Category(QObject *parent = nullptr);
   explicit Category(qint32 id, QString const &name, QObject *parent = nullptr);
+  QString categoryName() const;
+  qint32 categoryId() const;
 
 signals:
 

@@ -19,6 +19,8 @@ signals:
 
 public slots:
   void addCategory(const QString &);
+  void updateCategory(qint32, QString const &);
+  void deleteCategory(qint32);
 
 private:
   // QList<SearchNode> m_searchNodes;

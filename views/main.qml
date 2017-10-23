@@ -7,7 +7,6 @@ import QtQuick.Controls.Styles 1.4
 
 ApplicationWindow {
     visible: true
-    objectName: "asd"
     width: 1280
     height: 900
 
@@ -15,6 +14,9 @@ ApplicationWindow {
             objectName: "tab_view"
             anchors.fill: parent
             anchors.margins: 4
+            signal onCurrentIndexChanged(int currentIndex);
+            onCurrentIndexChanged: onCurrentIndexChanged(currentIndex);
+
             Tab {
                     title: "SEARCH"
                     SearchTab {
@@ -26,9 +28,6 @@ ApplicationWindow {
                     CategoriesTab {}
             }
             Tab { title: "SETTINGS"
-                    SearchTab {
-
-                    }
             }
 
             style: TabViewStyle {

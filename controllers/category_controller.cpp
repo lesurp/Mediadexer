@@ -22,3 +22,19 @@ void CategoryController::addCategory(const QString &category_name) {
   m_categories = QVariant::fromValue(model.categories());
   emit categoriesChanged();
 }
+
+void CategoryController::updateCategory(qint32 categoryId,
+                                        QString const &categoryName) {
+  if (categoryName.isEmpty())
+    return;
+
+  model.updateCategory(categoryId, categoryName);
+  m_categories = QVariant::fromValue(model.categories());
+  emit categoriesChanged();
+}
+
+void CategoryController::deleteCategory(qint32 categoryId) {
+  model.deleteCategory(categoryId);
+  m_categories = QVariant::fromValue(model.categories());
+  emit categoriesChanged();
+}
