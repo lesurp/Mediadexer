@@ -3,10 +3,12 @@ QT += qml quick widgets sql
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    entities/category.cpp \
-    controllers/category_controller.cpp \
     model/model.cpp \
-    controllers/tabmanager.cpp
+    controllers/category_controller.cpp \
+    controllers/tabmanager.cpp \
+    controllers/searchcontroller.cpp \
+    entities/searchnode.cpp \
+    entities/category.cpp
 
 RESOURCES += qml.qrc \
         resources.qrc \
@@ -34,14 +36,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    entities/category.h \
-    controllers/category_controller.h \
     model/model.h \
-    controllers/tabmanager.h
-
-DISTFILES += \
-    views/main.qml \
-    views/SearchTab.qml \
-    views/CategoriesTab.qml \
-    views/CategoriesGrid.qml \
-    views/ScrollBar.qml
+    controllers/category_controller.h \
+    controllers/tabmanager.h \
+    controllers/searchcontroller.h \
+    entities/category.h \
+    entities/searchnode.h

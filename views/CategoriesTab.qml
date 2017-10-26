@@ -2,8 +2,6 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
-import mediadexer.Category 1.0;
-
 Item {
         objectName: "categoryTab"
         signal addCategory(string categoryName);
@@ -19,15 +17,15 @@ Item {
                 height: parent.height / 3
 
                 onCategoryClicked: {
-                        if(category.categoryId === selectedCategoryId) {
+                        if(categoryId === selectedCategoryId) {
                                 selectedCategoryId = -1;
                                 category_text_input.text = ""
                                 update_add_button_text.text = "Add category"
                                 delete_button.visible = false;
                         } else {
-                                selectedCategoryId = category.categoryId;
-                                category_text_input.text = category.categoryName;
-                                update_add_button_text.text = "Update category: " + category.categoryName;
+                                selectedCategoryId = categoryId;
+                                category_text_input.text = categoryName;
+                                update_add_button_text.text = "Update category: " + categoryName;
                                 delete_button.visible = true;
                         }
                 }

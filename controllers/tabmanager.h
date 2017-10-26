@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "controllers/category_controller.h"
+#include "controllers/searchcontroller.h"
 
 class TabManager : public QObject {
   Q_OBJECT
@@ -19,6 +20,7 @@ public slots:
 private:
   QObject *tabView;
   CategoryController *categoryController;
+  SearchController *searchController;
 };
 
 #endif // TABMANAGER_H

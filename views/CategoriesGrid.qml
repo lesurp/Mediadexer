@@ -2,10 +2,8 @@ import QtQuick 2.0
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 1.4
 
-import mediadexer.Category 1.0
-
 Item {
-        signal categoryClicked(Category category);
+        signal categoryClicked(int categoryId, string categoryName);
         GridView {
                 id: grid
                 width: parent.width;
@@ -37,7 +35,7 @@ Item {
                                                     grid.currentIndex = -1;
                                                 else
                                                     grid.currentIndex = index;
-                                                categoryClicked(modelData);
+                                                categoryClicked(modelData.categoryId, modelData.categoryName);
                                         }
                                 }
                         }
@@ -47,5 +45,4 @@ Item {
         ScrollBar {
                 flickable: grid
         }
-
 }

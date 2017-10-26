@@ -10,6 +10,13 @@
 QString const CATEGORY_TABLE = "categories";
 QString const CATEGORY_ID = "id";
 QString const CATEGORY_NAME = "name";
+QString const FILE_TABLE = "files";
+QString const FILE_ID = "id";
+QString const FILE_NAME = "name";
+QString const FILE_CATEGORIES_TABLE = "file_categories";
+QString const FILE_CATEGORIES_FILE_ID = "file_id";
+QString const FILE_CATEGORIES_CATEGORY_ID = "category_id";
+
 QString const QUERY_CATEGORIES =
     "SELECT " + CATEGORY_ID + "," + CATEGORY_NAME + " FROM " + CATEGORY_TABLE;
 QString const ADD_CATEGORY = "INSERT INTO " + CATEGORY_TABLE + "(" +
@@ -19,6 +26,12 @@ QString const UPDATE_CATEGORY = "UPDATE " + CATEGORY_TABLE + " SET (" +
                                 CATEGORY_ID + " == :category_id";
 QString const DELETE_CATEGORY = "DELETE FROM " + CATEGORY_TABLE + " WHERE " +
                                 CATEGORY_ID + " == :category_id";
+
+QString const FILTER_FILES =
+    "SELECT " + FILE_NAME + ", " + FILE_ID + " FROM " + FILE_TABLE + ", " +
+    CATEGORY_TABLE + ", " + FILE_CATEGORIES_TABLE + " WHERE " + FILE_ID +
+    " == " + FILE_CATEGORIES_FILE_ID + " AND " + CATEGORY_ID +
+    " == " + FILE_CATEGORIES_CATEGORY_ID + " AND " + CATEGORY_ID + " == ?";
 
 Model::Model() {
   m_db = QSqlDatabase::addDatabase("QSQLITE");
@@ -37,10 +50,9 @@ Model::Model() {
       }
 
       if (!query.exec(queryTxt)) {
-        qFatal(QString("One of the query failed to execute."
-                       " Error detail: " +
-                       query.lastError().text())
-                   .toLocal8Bit());
+        qFatal("One of the query failed to execute."
+               " Error detail: %s",
+               query.lastError().text().toLocal8Bit().data());
       }
       query.finish();
     }

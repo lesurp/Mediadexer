@@ -5,8 +5,10 @@
 #include <qqmlcontext.h>
 
 #include "controllers/category_controller.h"
+#include "controllers/searchcontroller.h"
 #include "controllers/tabmanager.h"
 #include "entities/category.h"
+#include "entities/searchnode.h"
 #include "model/model.h"
 
 int main(int argc, char *argv[]) {
@@ -14,8 +16,7 @@ int main(int argc, char *argv[]) {
   QQmlApplicationEngine engine;
   auto context = engine.rootContext();
 
-  qmlRegisterType<Category>("mediadexer.Category", 1, 0, "Category");
-
+  SearchController searchController;
   CategoryController categoryController;
   context->setContextProperty("CategoryController", &categoryController);
 

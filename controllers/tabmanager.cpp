@@ -9,12 +9,15 @@ enum TabIndexes {
 };
 
 TabManager::TabManager(QObject *tabView, CategoryController *categoryController,
-                       QObject *parent)
-    : tabView(tabView), categoryController(categoryController),
-      QObject(parent) {}
+                       SearchController *searchController, QObject *parent)
+    : QObject(parent), tabView(tabView), categoryController(categoryController),
+      searchController(searchController) {}
 
 void TabManager::tabChanged(int tabIndex) {
   switch (tabIndex) {
+  case SEARCH:
+
+    break;
   case CATEGORIES:
     auto categoryTab = tabView->findChild<QObject *>("categoryTab");
     QObject::connect(categoryTab, SIGNAL(addCategory(QString)),
