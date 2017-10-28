@@ -11,7 +11,7 @@ Item {
         x: 12;
         y: 12;
 
-        CategoriesGrid {
+        CategoryGrid {
                 id: categories_grid
                 width: parent.width / 3
                 height: parent.height / 3

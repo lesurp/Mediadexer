@@ -4,28 +4,38 @@
 #include <QObject>
 #include <QString>
 
+enum NodeType {
+  CategoryPlaceholder,
+  Category,
+  Operator,
+};
+
 class SearchNode : public QObject {
   Q_OBJECT
-  Q_PROPERTY(qint32 categoryId MEMBER m_categoryId)
-  Q_PROPERTY(NodeType nodeType MEMBER m_nodeType)
-  Q_ENUMS(NodeType)
 public:
-  enum NodeType {
-    OpenParenthesis,
-    CloseParenthesis,
-    Category,
-    AddOperator,
-    OrOperator,
+  enum Operator {
+    Add,
+    Or,
+    OpenParen,
+    CloseParen,
+    Equal,
+    Different,
+    Placeholder,
   };
+  Q_ENUM(Operator)
 
   explicit SearchNode(QObject *parent = nullptr);
-  explicit SearchNode(SearchNode::NodeType const, QObject *parent = nullptr);
-  explicit SearchNode(qint32 const, QObject *parent = nullptr);
-  operator QString() const;
+  explicit SearchNode(Operator const, QObject *parent = nullptr);
+  explicit SearchNode(qint32 const, QString const &, QObject *parent = nullptr);
+  QString getDisplayedString() const;
+  QString getQueryString() const;
 
-protected:
-  NodeType m_nodeType;
-  qint32 m_categoryId;
+private:
+  NodeType nodeType;
+  QString displayedString;
+  QString queryString;
 };
+
+Q_DECLARE_METATYPE(SearchNode::Operator)
 
 #endif // SEARCHNODE_H

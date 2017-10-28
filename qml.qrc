@@ -2,8 +2,8 @@
     <qresource prefix="/">
         <file>views/main.qml</file>
         <file>views/SearchTab.qml</file>
-        <file>views/CategoriesTab.qml</file>
-        <file>views/CategoriesGrid.qml</file>
+        <file>views/CategoryTab.qml</file>
+        <file>views/CategoryGrid.qml</file>
         <file>views/ScrollBar.qml</file>
     </qresource>
 </RCC>

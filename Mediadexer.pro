@@ -4,7 +4,7 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     model/model.cpp \
-    controllers/category_controller.cpp \
+    controllers/categorycontroller.cpp \
     controllers/tabmanager.cpp \
     controllers/searchcontroller.cpp \
     entities/searchnode.cpp \
@@ -37,8 +37,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     model/model.h \
-    controllers/category_controller.h \
     controllers/tabmanager.h \
     controllers/searchcontroller.h \
+    controllers/categorycontroller.h \
     entities/category.h \
     entities/searchnode.h

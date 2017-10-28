@@ -3,19 +3,20 @@
 
 #include <QObject>
 
-#include "controllers/category_controller.h"
+#include "controllers/categorycontroller.h"
 #include "controllers/searchcontroller.h"
 
 class TabManager : public QObject {
   Q_OBJECT
 public:
   explicit TabManager(QObject *tabview, CategoryController *categoryController,
+                      SearchController *searchController,
                       QObject *parent = nullptr);
 
 signals:
 
 public slots:
-  void tabChanged(int);
+  void onTabChanged(int);
 
 private:
   QObject *tabView;

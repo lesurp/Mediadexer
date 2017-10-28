@@ -16,6 +16,7 @@ QString const FILE_NAME = "name";
 QString const FILE_CATEGORIES_TABLE = "file_categories";
 QString const FILE_CATEGORIES_FILE_ID = "file_id";
 QString const FILE_CATEGORIES_CATEGORY_ID = "category_id";
+QString const CATEGORY_PLACEHOLDER = CATEGORY_TABLE + "." + CATEGORY_ID;
 
 QString const QUERY_CATEGORIES =
     "SELECT " + CATEGORY_ID + "," + CATEGORY_NAME + " FROM " + CATEGORY_TABLE;
@@ -94,3 +95,5 @@ void Model::deleteCategory(qint32 categoryId) {
   q.bindValue(":category_id", categoryId);
   q.exec();
 }
+
+QString Model::categoryPlaceholder() { return CATEGORY_PLACEHOLDER; }

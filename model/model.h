@@ -13,8 +13,9 @@ public:
   void updateCategory(qint32, QString const &);
   void deleteCategory(qint32);
 
+  static QString categoryPlaceholder();
+
 private:
-  static void createDatabase();
   QSqlDatabase m_db;
 };
 

@@ -25,7 +25,7 @@ ApplicationWindow {
             }
             Tab { title: "BROWSE" }
             Tab { title: "CATEGORIES"
-                    CategoriesTab {}
+                    CategoryTab {}
             }
             Tab { title: "SETTINGS"
             }
