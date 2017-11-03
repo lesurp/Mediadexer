@@ -23,8 +23,8 @@ void TabManager::onTabChanged(int tabIndex) {
     QObject::connect(searchTab, SIGNAL(categoryClicked(qint32, QString)),
                      searchController,
                      SLOT(onCategoryClicked(qint32, QString)));
-    QObject::connect(searchTab, SIGNAL(operatorButtonClicked(int)),
-                     searchController, SLOT(onFormatterClicked(int)));
+    QObject::connect(searchTab, SIGNAL(formatterClicked(int)), searchController,
+                     SLOT(onFormatterClicked(int)));
   } break;
   case CATEGORIES: {
     auto categoryTab = tabView->findChild<QObject *>("categoryTab");

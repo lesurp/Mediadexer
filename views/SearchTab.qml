@@ -1,11 +1,12 @@
 import QtQuick 2.0
+import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 
 import mediadexer.searchnode 1.0
 
 Item {
     signal categoryClicked(int categoryId, string categoryName);
-    signal operatorButtonClicked(int op);
+    signal formatterClicked(int nodeType);
     objectName: "searchTab"
     CategoryGrid {
         id: categoryGrid
@@ -16,22 +17,64 @@ Item {
     }
 
 
-    Rectangle {
-        color: '#333'
+        Text {
         id: queryText
         anchors.top: categoryGrid.bottom
-        Text {
+            color: "#999"
             width: parent.width
-            height: parent.height
             text: SearchController.searchQuery;
-        }
     }
 
-    Row {
+    GridLayout {
+        columns: 4
         anchors.top: queryText.bottom
-        Button {
-            text: "ADD"
-            onClicked: operatorButtonClicked(SearchNode.Add);
+        MyButton {
+            width: 50
+            height: 30
+            text: "+"
+            onClicked: formatterClicked(SearchNode.Plus);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: "("
+            onClicked: formatterClicked(SearchNode.OpenParen);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: "AND"
+            onClicked: formatterClicked(SearchNode.And);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: "="
+            onClicked: formatterClicked(SearchNode.Equal);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: "-"
+            onClicked: formatterClicked(SearchNode.Minus);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: "OR"
+            onClicked: formatterClicked(SearchNode.Or);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: ")"
+            onClicked: formatterClicked(SearchNode.CloseParen);
+        }
+        MyButton {
+            width: 50
+            height: 30
+            text: "≠"
+            onClicked: formatterClicked(SearchNode.Different);
         }
     }
 }

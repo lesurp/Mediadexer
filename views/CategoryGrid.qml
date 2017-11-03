@@ -3,46 +3,31 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Controls 1.4
 
 Item {
-        signal categoryClicked(int categoryId, string categoryName);
-        GridView {
-                id: grid
-                width: parent.width;
-                height: parent.height;
-                clip:true;
-                currentIndex: -1
+    signal categoryClicked(int categoryId, string categoryName);
+    GridView {
+        id: grid
+        width: parent.width;
+        height: parent.height;
+        clip:true;
+        currentIndex: -1
 
-                model: CategoryController.categories
-                delegate: Component {
-                        Rectangle {
-                                width: grid.cellWidth;
-                                height: grid.cellHeight
-                                color: GridView.isCurrentItem ? "green" : "#999"
-                                Text {
-                                        width: grid.cellWidth
-                                        height: grid.cellHeight
-                                        text: modelData.categoryName
-                                        color: "#000"
-                                        font.bold: true
-                                        horizontalAlignment: Text.AlignHCenter
-                                        verticalAlignment: Text.AlignVCenter
-                                        wrapMode: Text.Wrap;
-                                }
+        model: CategoryController.categories
+        delegate: MyButton {
+            width: grid.cellWidth;
+            height: grid.cellHeight
+            selected: GridView.isCurrentItem
 
-                                MouseArea {
-                                        anchors.fill: parent
-                                        onClicked: {
-                                                if(grid.currentIndex == index)
-                                                    grid.currentIndex = -1;
-                                                else
-                                                    grid.currentIndex = index;
-                                                categoryClicked(modelData.categoryId, modelData.categoryName);
-                                        }
-                                }
-                        }
-                }
-        }
+            onClicked: {
+                if(grid.currentIndex == index)
+                    grid.currentIndex = -1;
+                else
+                    grid.currentIndex = index;
+                categoryClicked(modelData.categoryId, modelData.categoryName);
+            }
 
-        ScrollBar {
-                flickable: grid
-        }
+        }        }
+
+    ScrollBar {
+        flickable: grid
+    }
 }

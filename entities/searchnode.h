@@ -4,28 +4,24 @@
 #include <QObject>
 #include <QString>
 
-enum NodeType {
-  CategoryPlaceholder,
-  Category,
-  Operator,
-};
-
 class SearchNode : public QObject {
   Q_OBJECT
 public:
-  enum Operator {
-    Add,
+  enum NodeType {
+    Plus,
+    Minus,
+    And,
     Or,
     OpenParen,
     CloseParen,
     Equal,
     Different,
-    Placeholder,
+    Category,
   };
-  Q_ENUM(Operator)
+  Q_ENUM(NodeType)
 
   explicit SearchNode(QObject *parent = nullptr);
-  explicit SearchNode(Operator const, QObject *parent = nullptr);
+  explicit SearchNode(NodeType const, QObject *parent = nullptr);
   explicit SearchNode(qint32 const, QString const &, QObject *parent = nullptr);
   QString getDisplayedString() const;
   QString getQueryString() const;
@@ -33,9 +29,9 @@ public:
 private:
   NodeType nodeType;
   QString displayedString;
-  QString queryString;
+  qint32 categoryId;
 };
 
-Q_DECLARE_METATYPE(SearchNode::Operator)
+Q_DECLARE_METATYPE(SearchNode::NodeType)
 
 #endif // SEARCHNODE_H

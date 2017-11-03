@@ -13,14 +13,14 @@ void SearchController::onCategoryClicked(qint32 const categoryId,
 }
 
 void SearchController::onFormatterClicked(int const op) {
-  m_nodesList.append(new SearchNode(static_cast<SearchNode::Operator>(op)));
+  m_nodesList.append(new SearchNode(static_cast<SearchNode::NodeType>(op)));
   emit searchQueryChanged();
 }
 
 QString SearchController::searchQuery() {
   QString searchQuery;
   for (auto const &node : m_nodesList)
-    searchQuery += node->getQueryString();
+    searchQuery += node->getDisplayedString();
 
   return searchQuery;
 }

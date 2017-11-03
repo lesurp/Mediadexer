@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     controllers/tabmanager.cpp \
     controllers/searchcontroller.cpp \
     entities/searchnode.cpp \
-    entities/category.cpp
+    entities/category.cpp \
+    model/filterbuilder.cpp
 
 RESOURCES += qml.qrc \
         resources.qrc \
@@ -41,4 +42,5 @@ HEADERS += \
     controllers/searchcontroller.h \
     controllers/categorycontroller.h \
     entities/category.h \
-    entities/searchnode.h
+    entities/searchnode.h \
+    model/filterbuilder.h
